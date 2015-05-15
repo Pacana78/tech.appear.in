@@ -29,6 +29,18 @@
       <% } %>
     </div>
     <footer class="article-footer">
+    <% if (author && post.author) { %>
+        <div id="author-box">
+            <img src="<%= post.author.avatarUrl %>">
+            <div class="about-text">
+                <h1><%= post.author.name %></h1>
+                <p><%= post.author.about %></p>
+                <p>
+                    <a href="https://twitter.com/<%= post.author.twitter %>">Twitter</a> - <a href="https://github.com/<%= post.author.github %>">GitHub</a>
+                </p>
+            </div>
+        </div>
+    <% } %>
       <% if (post.comments && config.disqus_shortname){ %>
         <a href="<%- post.permalink %>#disqus_thread" class="article-comment-link">Comments</a>
       <% } %>

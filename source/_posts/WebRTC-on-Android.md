@@ -3,6 +3,7 @@ title: "WebRTC on Android"
 date: 2015-05-14 22:38:13
 comments: true
 toc: true
+authorId: dagingaa
 tags: 
 	- webrtc
 	- android
@@ -239,6 +240,6 @@ As you can see, the APIs for Android are pretty simple and straightforward once 
 
 WebRTC opens up communications to all of us, free for developers, free for end users. And it enables a lot more than just video chat. We've seen applications such as health services, low-latency file transfer, torrents, and even gaming. 
 
-To see a real-life example of a WebRTC app, check out appear.in on [Android]() or [iOS](). It works perfectly between browsers and native apps, and is free for up to 8 people in the same room. No installation or login required.
+To see a real-life example of a WebRTC app, check out appear.in on [Android](https://play.google.com/store/apps/details?id=appear.in.app) or [iOS](https://itunes.apple.com/us/app/appear.in-free-group-video/id878583078?ls=1&mt=8). It works perfectly between browsers and native apps, and is free for up to 8 people in the same room. No installation or login required.
 
 Now go out there, and build something new and different!

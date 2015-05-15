@@ -65,9 +65,10 @@ pagination_dir: page
 ## Themes: http://hexo.io/themes/
 theme: landscape
 plugins:
-- clean-css
-- html-minifier
-- uglify
+- hexo-clean-css
+- hexo-html-minifier
+- hexo-uglify
+- hexo-multiauthor
 
 clean_css:
 html_minifier:
