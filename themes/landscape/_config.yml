@@ -1,0 +1,23 @@
+# Header
+menu:
+  Home: /
+  About: https://appear.in/information/team
+  "Developer API": https://developer.appear.in
+
+# Content
+excerpt_link: Read More
+fancybox: false
+
+# Sidebar
+sidebar: false
+widgets:
+- archives
+- recent_posts
+
+# Miscellaneous
+google_analytics: UA-42631098-8
+favicon: /favicon.png
+twitter: appear_in
+google_plus:
+fb_admins:
+fb_app_id:

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <%
+  var title = page.title;
+
+  if (is_archive()){
+    title = 'Archives';
+
+    if (is_month()){
+      title += ': ' + page.year + '/' + page.month;
+    } else if (is_year()){
+      title += ': ' + page.year;
+    }
+  } else if (is_category()){
+    title = 'Category: ' + page.category;
+  } else if (is_tag()){
+    title = 'Tag: ' + page.tag;
+  }
+  %>
+  <title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <%- open_graph({twitter_id: theme.twitter, google_plus: theme.google_plus, fb_admins: theme.fb_admins, fb_app_id: theme.fb_app_id}) %>
+  <% if (theme.rss){ %>
+    <link rel="alternative" href="<%- theme.rss %>" title="<%= config.title %>" type="application/atom+xml">
+  <% } %>
+  <link rel="icon" type="image/png" href="https://d1x2efl61akomv.cloudfront.net/images/icons/favicon-196x196.9453e254.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="https://d1x2efl61akomv.cloudfront.net/images/icons/favicon-16x16.a2b144b0.png" sizes="16x16" />
+  <link rel="icon" type="image/png" href="https://d1x2efl61akomv.cloudfront.net/images/icons/favicon-32x32.4bcea2b6.png" sizes="32x32" />
+  <link rel="icon" type="image/png" href="https://d1x2efl61akomv.cloudfront.net/images/icons/favicon-96x96.a1e16563.png" sizes="96x96" />
+  <link rel="icon" type="image/png" href="https://d1x2efl61akomv.cloudfront.net/images/icons/favicon-128.34137054.png" sizes="128x128" />
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600" rel="stylesheet" type="text/css">
+  <%- css('css/style') %>
+  <%- partial('google-analytics') %>
+  <script type="text/javascript" src="//use.typekit.net/foj7ell.js"></script>
+  <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+</head>
