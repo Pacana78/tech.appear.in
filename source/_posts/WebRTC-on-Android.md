@@ -15,6 +15,8 @@ However, WebRTC suffers from an urban myth: WebRTC is just for the browser. In f
 
 In this blog post we will investigate how you can get started with building WebRTC into your Android apps, using the native libraries provided by the [WebRTC Initiative](http://www.webrtc.org/). We will not be going through how you set up a call using a signalling mechanism, but instead highlight what similarities and differences Android has over the implementation in browsers. As you will see, the APIs for Android parallel those for the web. If you are looking for a more basic introduction to WebRTC, I can highly recommend [Sam Dutton’s Getting started with WebRTC](http://www.html5rocks.com/en/tutorials/webrtc/basics/).
 
+<!-- more -->
+
 #Adding the WebRTC library to your project
 _The following guide has been written with the Android WebRTC library version 9127 in mind._
 

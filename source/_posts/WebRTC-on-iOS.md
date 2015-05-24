@@ -12,6 +12,8 @@ Hangouts does it. Facebook Messenger does it. appear.in does it. They all use We
 
 In this blog post we will investigate how to get started building WebRTC into your iOS app. We will use the native libraries provided by the [WebRTC Initiative](http://www.webrtc.org/), but you can check out the [OpenWebRTC project](http://www.openwebrtc.io/) as well. We will not go through how you set up a call using a signaling mechanism, but instead highlight what similarities and differences iOS has over the implementation in browsers. As you will see, the APIs for iOS parallel those for the web. If you are looking for a more basic introduction to WebRTC, I can highly recommend [Sam Dutton’s Getting started with WebRTC](http://www.html5rocks.com/en/tutorials/webrtc/basics/). Another good resource is the WebRTC reference implementation, [AppRTCDemo](https://chromium.googlesource.com/external/webrtc/+/master/talk/examples/objc/).
 
+<!-- more -->
+
 #Getting Started
 The first thing you’ll need is the WebRTC library itself. The library we’re using for this tutorial is maintained by Google and is completely open source. You can download the code and build the library yourself, or you can download a prebuilt library. The engineers at pristine.io have taken it upon themselves to build iOS binaries for every revison of WebRTC, and publish them using CocoaPods. **Unless you need to make changes to the underlying WebRTC code, we recommend that you use the pod `libjingle_peerconnection`.**
 
