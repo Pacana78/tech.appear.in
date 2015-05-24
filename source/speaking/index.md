@@ -31,6 +31,11 @@ Date: 25-27 September 2015
 Type: Attending  
 Attendees: [Dag-Inge Aas](https://twitter.com/daginge)
 
+##[Mobile Meetup Oslo](http://www.meetup.com/Mobile-Meetup-Oslo/events/222155906/)
+Date: 3 June 2015  
+Type: Talk  
+Attendees: [Dag-Inge Aas](https://twitter.com/daginge)
+
 ##[Google IO](https://events.google.com/io2015/)
 Date: 28-29 May 2015  
 Type: Attending  
@@ -96,7 +101,7 @@ Type: Talk
 Slides: http://www.slideshare.net/TrondKjetilBremnes/gdg-3122014  
 Speaker: [Trond Kjetil Bremnes](https://twitter.com/kartoffelmos)
 
-###Making Waves
+###Making Web
 Topic: **Lean startup in practice: spreading our WebRTC video service to 196 countries.**  
 Date: 24 September 2014  
 Type: Talk   
