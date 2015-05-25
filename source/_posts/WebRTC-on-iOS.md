@@ -4,7 +4,7 @@ date: 2015-05-25 22:38:13
 comments: true
 toc: true
 authorId: bruun
-tags: 
+tags:
 	- webrtc
 	- iOS
 ---
@@ -25,10 +25,9 @@ Once you have built or downloaded the library I recommend that you take some tim
 For quick proof-of-concept assembling of an WebRTC app you do not need to provide a STUN or TURN server to the peer connection. If you omit it, you will only generate internal network host candidates, which is fine as long as you are testing on the same network. If you do want to specify STUN and TURN, this is how you do it:
 
 ```plaintext
-RTCIceServer *iceServer =
-    [RTCICEServer alloc] initWithURI:[NSURL URLWithString:YOUR_SERVER] 
-        username:USERNAME_OR_EMPTY_STRING 
-        password:PASSWORD_OR_EMPTY_STRING]
+RTCIceServer *iceServer = [RTCICEServer alloc] initWithURI:[NSURL URLWithString:YOUR_SERVER]
+    username:USERNAME_OR_EMPTY_STRING
+    password:PASSWORD_OR_EMPTY_STRING]
 ```
 
 Add these to an `NSArray` and keep them until it’s time to create the peer connection.
@@ -64,7 +63,7 @@ peerConnection.createOffer(function didCreateSessionDescription(sdp) {
 This differs slightly from the familiar JavaScript API, and I will walk you through the additional logic needed below.
 
 ##Creating the RTCPeerConnection
-As you know from the web API, the `RTCPeerConnection` is what controls a WebRTC media session. The iOS library tries to mirror the web API as far as possible, meaning you will also have an `RTCPeerConnection` object for managing your call on iOS. 
+As you know from the web API, the `RTCPeerConnection` is what controls a WebRTC media session. The iOS library tries to mirror the web API as far as possible, meaning you will also have an `RTCPeerConnection` object for managing your call on iOS.
 
 The `RTCPeerConnection` is created using the `RTCPeerConnectionFactory`:
 
@@ -74,7 +73,8 @@ The `RTCPeerConnection` is created using the `RTCPeerConnectionFactory`:
 RTCPeerConnectionFactory *pcFactory = [[RTCPeerConnectionFactory alloc] init];
 
 // Create the peer connection using the ICE server list and the current class as the delegate
-RTCPeerConnection *peerConnection = [pcFactory peerConnectionWithICEServers:iceServers constraints:nil delegate:self];
+RTCPeerConnection *peerConnection = [pcFactory peerConnectionWithICEServers:iceServers
+                                                constraints:nil delegate:self];
 ```
 
 As you can see, creating a `RTCPeerConnection` is pretty similar to the web, if you disregard the syntax differences! You should also disable SSL when you are done with your WebRTC call, or when the app terminates:
@@ -85,7 +85,7 @@ As you can see, creating a `RTCPeerConnection` is pretty similar to the web, if 
 
 #Gaining camera and microphone permission
 
-Unless we want a one-way audio/video session with a different client (like a browser or [Android application](http://tech.appear.in/2015/05/14/WebRTC-on-Android/), we need to have some media to send to the other peer. In this example we will send both the video and the audio, which we need to wrap in a `RTCMediaStream`. Unlike the web, where we have `getUserMedia`, we need to create the stream object ourself. While slightly different, this isn’t much harder than what you’re used to. 
+Unless we want a one-way audio/video session with a different client (like a browser or [Android application](http://tech.appear.in/2015/05/14/WebRTC-on-Android/), we need to have some media to send to the other peer. In this example we will send both the video and the audio, which we need to wrap in a `RTCMediaStream`. Unlike the web, where we have `getUserMedia`, we need to create the stream object ourself. While slightly different, this isn’t much harder than what you’re used to.
 
 Note that the code below assumes that the user grants access to the camera and microphone, which might not be the case in the real world.
 
@@ -97,7 +97,7 @@ RTCMediaStream *localStream = [factory mediaStreamWithLabel:@”someUniqueStream
 ```
 
 ##Audio
-Getting the audio track is easy, since there is only one source, the microphone, which will be automatically selected by the WebRTC library. When you do this, iOS will trigger the microphone permission prompt automatically. 
+Getting the audio track is easy, since there is only one source, the microphone, which will be automatically selected by the WebRTC library. When you do this, iOS will trigger the microphone permission prompt automatically.
 
 ```objc
 RTCAudioTrack *audioTrack = [factory audioTrackWithID:@”audio0”];
@@ -105,7 +105,7 @@ RTCAudioTrack *audioTrack = [factory audioTrackWithID:@”audio0”];
 ```
 
 ##Video
-For the video track we need to specify what `AVCaptureDevice` we want to use. You can choose between the front and back facing camera on most modern iOS devices. Let’s use the front-facing camera for that wonderful selfie experience. 
+For the video track we need to specify what `AVCaptureDevice` we want to use. You can choose between the front and back facing camera on most modern iOS devices. Let’s use the front-facing camera for that wonderful selfie experience.
 
 Keep in mind that you don’t have access to the camera in the simulator, so the code below won’t find a `AVCaptureDevice` unless you run it on a device.
 
@@ -142,10 +142,12 @@ You are now ready to either send or receive an offer. That logic will be up to y
 Let’s look at how the offer is created, which initiates the call.
 
 ```objc
-RTCMediaConstraints *constraints = [RTCMediaConstraints alloc] initWithMandatoryConstraints: @[
-[[RTCPair alloc] initWithKey:@"OfferToReceiveAudio" value:@"true"],
-[[RTCPair alloc] initWithKey:@"OfferToReceiveVideo" value:@"true"]] 
-optionalConstraints: nil];
+RTCMediaConstraints *constraints = [RTCMediaConstraints alloc] initWithMandatoryConstraints:
+    @[
+        [[RTCPair alloc] initWithKey:@"OfferToReceiveAudio" value:@"true"],
+        [[RTCPair alloc] initWithKey:@"OfferToReceiveVideo" value:@"true"]
+    ]
+    optionalConstraints: nil];
 
 [peerConnection createOfferWithConstraints:constraints];
 ```
@@ -154,7 +156,8 @@ optionalConstraints: nil];
 Once the offer has been generated, we need to set our own local description with the session description passed into `didCreateSessionDescription`.
 
 ```objc
-(void)peerConnection:(RTCPeerConnection *)peerConnection didCreateSessionDescription:(RTCSessionDescription *)sdp error:(NSError *)error
+(void)peerConnection:(RTCPeerConnection *)peerConnection
+    didCreateSessionDescription:(RTCSessionDescription *)sdp error:(NSError *)error
 {
 	[peerConnection setLocalDescription:sdp]
 }
@@ -163,7 +166,8 @@ Once the offer has been generated, we need to set our own local description with
 ##Handle that the local description was set
 Once the local description has been set, we can transmit our session description offer generated from our `createOfferWithConstriants` call through our signaling channel to the other peer.
 ```objc
-(void)peerConnection:(RTCPeerConnection *)peerConnection didSetSessionDescriptionWithError:(NSError *)error
+(void)peerConnection:(RTCPeerConnection *)peerConnection
+    didSetSessionDescriptionWithError:(NSError *)error
 {
     if (peerConnection.signalingState == RTCSignalingHaveLocalOffer) {
         // Send offer through the signaling channel of our application
@@ -175,15 +179,15 @@ Once the local description has been set, we can transmit our session description
 At some point you should receive an answer back from the signaling server. Add that to the peer connection:
 
 ```objc
-RTCSessionDescription *remoteDesc =
-    [[RTCSessionDescription alloc] initWithType:@"answer" sdp:sdp];
+RTCSessionDescription *remoteDesc = [[RTCSessionDescription alloc] initWithType:@"answer" sdp:sdp];
 [peerConnection setRemoteDescription:remoteDesc];
 ```
 
 This will trigger the `didSetSessionDescriptionWithError` delegate method to fire, but currently that only handles setting the local description. Let’s extend it to handle setting the remote description:
 
 ```objc
-(void)peerConnection:(RTCPeerConnection *)peerConnection didSetSessionDescriptionWithError:(NSError *)error
+(void)peerConnection:(RTCPeerConnection *)peerConnection
+    didSetSessionDescriptionWithError:(NSError *)error
 {
   // If we have a local offer OR answer we should signal it
   if (peerConnection.signalingState == RTCSignalingHaveLocalOffer | RTCSignalingHaveLocalAnswer ) {
@@ -202,7 +206,8 @@ We are missing one very important part: The ICE candidates.
 As soon as you call `setLocalDescription`, the ICE engine will start firing off the `RTCPeerConnectionDelegate` method `gotICECandidate`. These are your local `iceCandidates`, and must be sent to the other peer.
 
 ```objc
-(void)peerConnection:(RTCPeerConnection *)peerConnection gotICECandidate:(RTCICECandidate *)candidate
+(void)peerConnection:(RTCPeerConnection *)peerConnection
+     gotICECandidate:(RTCICECandidate *)candidate
 {
 	// Send candidate through the signaling channel
 }
@@ -211,15 +216,17 @@ As soon as you call `setLocalDescription`, the ICE engine will start firing off 
 When receiving an ICE candidate on the wire, you simple pass it into the peer connection:
 
 ```objc
-RTCICECandidate *ice = [[RTCICECandidate alloc] initWithMid:SDP_MID index:SDP_M_LINE_INDEX sdp:SDP_CANDIDATE];
-[self.rtcPeerConnection addICECandidate:ice];
+RTCICECandidate *candidate = [[RTCICECandidate alloc] initWithMid:SDP_MID
+                                                      index:SDP_M_LINE_INDEX
+                                                        sdp:SDP_CANDIDATE];
+[self.rtcPeerConnection addICECandidate:candidate];
 ```
 
 #Receiving a video stream
 
-If everything happened in the right order, your network is playing nice, and the wind is blowing in the right direction, you should now receive a call to the delegate method `addedStream`. This method is called when a remote stream is added.
+If everything was called in the right order and your network is playing along nicely, you should now receive a call to the delegate method `addedStream`. This method is called when a remote stream is added.
 
-```objc 
+```objc
 (void)peerConnection:(RTCPeerConnection *)peerConnection addedStream:(RTCMediaStream *)stream
 {
     // Create a new render view with a size of your choice
@@ -236,7 +243,7 @@ If everything happened in the right order, your network is playing nice, and the
 #Finishing up
 As you can see, the APIs for iOS are pretty simple and straightforward once you know how they relate to their web counterparts. With the tools above, you can develop a production ready WebRTC app, instantly deployable to billions of capable devices.
 
-WebRTC opens up communications to all of us, free for developers, free for end users. And it enables a lot more than just video chat. We've seen applications such as health services, low-latency file transfer, torrents, and even gaming. 
+WebRTC opens up communications to all of us, free for developers, free for end users. And it enables a lot more than just video chat. We've seen applications such as health services, low-latency file transfer, torrents, and even gaming.
 
 To see a real-life example of a WebRTC app, check out appear.in on [Android]( https://play.google.com/store/apps/details?id=appear.in.app&referrer=utm_source%3Dtech.appear.in%26utm_medium%3Dblog%26utm_campaign%3Dandroid-launch-may15) or [iOS](https://itunes.apple.com/app/apple-store/id878583078?pt=1259761&ct=tech.appear.in&mt=8). It works perfectly between browsers and native apps, and is free for up to 8 people in the same room. No installation or login required.
 
