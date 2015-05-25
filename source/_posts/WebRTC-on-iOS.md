@@ -25,9 +25,9 @@ Once you have built or downloaded the library I recommend that you take some tim
 For quick proof-of-concept assembling of an WebRTC app you do not need to provide a STUN or TURN server to the peer connection. If you omit it, you will only generate internal network host candidates, which is fine as long as you are testing on the same network. If you do want to specify STUN and TURN, this is how you do it:
 
 ```plaintext
-RTCIceServer *iceServer = [RTCICEServer alloc] initWithURI:[NSURL URLWithString:YOUR_SERVER]
+RTCIceServer *iceServer = [[RTCICEServer alloc] initWithURI:[NSURL URLWithString:YOUR_SERVER]
     username:USERNAME_OR_EMPTY_STRING
-    password:PASSWORD_OR_EMPTY_STRING]
+    password:PASSWORD_OR_EMPTY_STRING]];
 ```
 
 Add these to an `NSArray` and keep them until it’s time to create the peer connection.
@@ -40,13 +40,13 @@ The `RTCPeerConnectionDelegate` delegate is the Objective-C implementation of th
 The `RTCSessionDescriptionDelegate` includes the following two methods
 
 ```plaintext
-(void)peerConnection:(RTCPeerConnection *)peerConnection
+- (void)peerConnection:(RTCPeerConnection *)peerConnection
     didCreateSessionDescription:(RTCSessionDescription *)sdp
                           error:(NSError *)error;
 ```
 
 ```plaintext
-(void)peerConnection:(RTCPeerConnection *)peerConnection
+- (void)peerConnection:(RTCPeerConnection *)peerConnection
     didSetSessionDescriptionWithError:(NSError *)error;
 ```
 
@@ -55,7 +55,7 @@ and can best be explained by using their JavaScript equivalents:
 ```javascript
 peerConnection.createOffer(function didCreateSessionDescription(sdp) {
     peerConnection.setLocalDescription(sdp, function didSetSessionDescription() {
-        // noop
+
     });
 });
 ```
@@ -156,7 +156,7 @@ RTCMediaConstraints *constraints = [RTCMediaConstraints alloc] initWithMandatory
 Once the offer has been generated, we need to set our own local description with the session description passed into `didCreateSessionDescription`.
 
 ```objc
-(void)peerConnection:(RTCPeerConnection *)peerConnection
+- (void)peerConnection:(RTCPeerConnection *)peerConnection
     didCreateSessionDescription:(RTCSessionDescription *)sdp error:(NSError *)error
 {
 	[peerConnection setLocalDescription:sdp]
@@ -166,7 +166,7 @@ Once the offer has been generated, we need to set our own local description with
 ##Handle that the local description was set
 Once the local description has been set, we can transmit our session description offer generated from our `createOfferWithConstriants` call through our signaling channel to the other peer.
 ```objc
-(void)peerConnection:(RTCPeerConnection *)peerConnection
+- (void)peerConnection:(RTCPeerConnection *)peerConnection
     didSetSessionDescriptionWithError:(NSError *)error
 {
     if (peerConnection.signalingState == RTCSignalingHaveLocalOffer) {
@@ -186,7 +186,7 @@ RTCSessionDescription *remoteDesc = [[RTCSessionDescription alloc] initWithType:
 This will trigger the `didSetSessionDescriptionWithError` delegate method to fire, but currently that only handles setting the local description. Let’s extend it to handle setting the remote description:
 
 ```objc
-(void)peerConnection:(RTCPeerConnection *)peerConnection
+- (void)peerConnection:(RTCPeerConnection *)peerConnection
     didSetSessionDescriptionWithError:(NSError *)error
 {
   // If we have a local offer OR answer we should signal it
@@ -206,7 +206,7 @@ We are missing one very important part: The ICE candidates.
 As soon as you call `setLocalDescription`, the ICE engine will start firing off the `RTCPeerConnectionDelegate` method `gotICECandidate`. These are your local `iceCandidates`, and must be sent to the other peer.
 
 ```objc
-(void)peerConnection:(RTCPeerConnection *)peerConnection
+- (void)peerConnection:(RTCPeerConnection *)peerConnection
      gotICECandidate:(RTCICECandidate *)candidate
 {
 	// Send candidate through the signaling channel
@@ -227,7 +227,7 @@ RTCICECandidate *candidate = [[RTCICECandidate alloc] initWithMid:SDP_MID
 If everything was called in the right order and your network is playing along nicely, you should now receive a call to the delegate method `addedStream`. This method is called when a remote stream is added.
 
 ```objc
-(void)peerConnection:(RTCPeerConnection *)peerConnection addedStream:(RTCMediaStream *)stream
+- (void)peerConnection:(RTCPeerConnection *)peerConnection addedStream:(RTCMediaStream *)stream
 {
     // Create a new render view with a size of your choice
     RTCEAGLVideoView *renderView = [[RTCEAGLVideoView alloc] initWithFrame:CGRectMake(100, 100)];
