@@ -245,6 +245,6 @@ As you can see, the APIs for iOS are pretty simple and straightforward once you 
 
 WebRTC opens up communications to all of us, free for developers, free for end users. And it enables a lot more than just video chat. We've seen applications such as health services, low-latency file transfer, torrents, and even gaming.
 
-To see a real-life example of a WebRTC app, check out appear.in on [Android]( https://play.google.com/store/apps/details?id=appear.in.app&referrer=utm_source%3Dtech.appear.in%26utm_medium%3Dblog%26utm_campaign%3Dandroid-launch-may15) or [iOS](https://itunes.apple.com/app/apple-store/id878583078?pt=1259761&ct=tech.appear.in&mt=8). It works perfectly between browsers and native apps, and is free for up to 8 people in the same room. No installation or login required.
+To see a real-life example of a WebRTC app, check out appear.in on [Android](https://play.google.com/store/apps/details?id=appear.in.app&referrer=utm_source%3Dtech.appear.in%26utm_medium%3Dblog%26utm_campaign%3Dandroid-launch-may15) or [iOS](https://itunes.apple.com/app/apple-store/id878583078?pt=1259761&ct=tech.appear.in&mt=8). It works perfectly between browsers and native apps, and is free for up to 8 people in the same room. No installation or login required.
 
 Now go out there, and build something new and different!
