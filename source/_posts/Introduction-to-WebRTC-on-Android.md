@@ -1,6 +1,6 @@
 ---
-title: "WebRTC on Android"
-date: 2015-05-14 22:38:13
+title: "Introduction to WebRTC on Android"
+date: 2015-05-25 22:38:00
 comments: true
 toc: true
 authorId: dagingaa
