@@ -31,20 +31,17 @@ Date: 25-27 September 2015
 Type: Attending  
 Attendees: [Dag-Inge Aas](https://twitter.com/daginge)
 
-##[Mobile Meetup Oslo](http://www.meetup.com/Mobile-Meetup-Oslo/events/222155906/)
-Date: 3 June 2015  
-Type: Talk  
-Attendees: [Dag-Inge Aas](https://twitter.com/daginge)
-
-##[Google IO](https://events.google.com/io2015/)
-Date: 28-29 May 2015  
-Type: Attending  
-Attendees: Colin Dodd and [Svein Willassen](https://twitter.com/sventy)
-
 #Past talks
 We gave a lot of talks, too. Some were recorded, some were not. Check them out below!
 
 ##2015
+
+##[Mobile Meetup Oslo](http://www.meetup.com/Mobile-Meetup-Oslo/events/222155906/)
+Topic: **WebRTC on iOS and Android**  
+Date: 3 June 2015  
+Type: Talk  
+Slides: [docs.google.com](https://docs.google.com/presentation/d/1ZRC_WFJK6AE5TO95rEYhlcTa5hxmDV4x1wHTATUNCE0/edit?usp=sharing)  
+Speaker: [Dag-Inge Aas](https://twitter.com/daginge)
 
 ###[Droidcon Zagreb](http://droidcon.hr/en/sessions/the-pain-and-pleasure-of-developing-webrtc-for-android/)
 Topic: **The pain (and pleasure) of developing WebRTC for Android**  
