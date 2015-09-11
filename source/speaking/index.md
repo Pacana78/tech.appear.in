@@ -36,10 +36,25 @@ We gave a lot of talks, too. Some were recorded, some were not. Check them out b
 
 ##2015
 
+###[JavaZone](http://2015.javazone.no/details.html?talk=1b58cb2c33b9e80f587db53f53d32ffb68caf098c01627f3b104876ffac2d071)
+Topic: **Taming the WebRTC beast on Android**  
+Date: 10 September 2015  
+Type: Talk  
+Video: https://vimeo.com/138959038  
+Slides: http://daginge.com/slides/what-the-hell-is-webrtc-javazone://docs.google.com/presentation/d/11mdPDBVtVqLuCM1MK5AoTyG41fMcCrgIZ0p2kCgTyMY/edit?usp=sharing  
+Speaker: [Dag-Inge Aas](https://twitter.com/daginge)
+
+###[JavaZone](http://2015.javazone.no/details.html?talk=39f48f35f259e6f4df221f145de8cc485613b5698b1c305727bea2245896af95)
+Topic: **Juggling chainsaws while on fire: Introduction to Product Management**  
+Date: 10 September 2015  
+Type: Talk  
+Video: https://vimeo.com/album/3556815/video/138849681  
+Speaker: Lisa Long
+
 ##[Tech Shock - The Realtime Web](http://www.meetup.com/TechShock/events/223009240/)
-Topic: **appear.in - Experiences with WebRTC**
-Date: 10 June 2015
-Type: Talk
+Topic: **appear.in - Experiences with WebRTC**  
+Date: 10 June 2015  
+Type: Talk  
 Speaker: [Bradley T. Hughes](https://twitter.com/_bradleythughes/)
 
 ##[Mobile Meetup Oslo](http://www.meetup.com/Mobile-Meetup-Oslo/events/222155906/)
