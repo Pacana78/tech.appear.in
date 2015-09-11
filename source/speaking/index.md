@@ -41,7 +41,7 @@ Topic: **Taming the WebRTC beast on Android**
 Date: 10 September 2015  
 Type: Talk  
 Video: https://vimeo.com/138959038  
-Slides: http://daginge.com/slides/what-the-hell-is-webrtc-javazone://docs.google.com/presentation/d/11mdPDBVtVqLuCM1MK5AoTyG41fMcCrgIZ0p2kCgTyMY/edit?usp=sharing  
+Slides: [docs.google.com](http://docs.google.com/presentation/d/11mdPDBVtVqLuCM1MK5AoTyG41fMcCrgIZ0p2kCgTyMY/edit?usp=sharing)  
 Speaker: [Dag-Inge Aas](https://twitter.com/daginge)
 
 ###[JavaZone](http://2015.javazone.no/details.html?talk=39f48f35f259e6f4df221f145de8cc485613b5698b1c305727bea2245896af95)
