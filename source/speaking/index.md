@@ -51,13 +51,13 @@ Type: Talk
 Video: https://vimeo.com/album/3556815/video/138849681  
 Speaker: Lisa Long
 
-##[Tech Shock - The Realtime Web](http://www.meetup.com/TechShock/events/223009240/)
+###[Tech Shock - The Realtime Web](http://www.meetup.com/TechShock/events/223009240/)
 Topic: **appear.in - Experiences with WebRTC**  
 Date: 10 June 2015  
 Type: Talk  
 Speaker: [Bradley T. Hughes](https://twitter.com/_bradleythughes/)
 
-##[Mobile Meetup Oslo](http://www.meetup.com/Mobile-Meetup-Oslo/events/222155906/)
+###[Mobile Meetup Oslo](http://www.meetup.com/Mobile-Meetup-Oslo/events/222155906/)
 Topic: **WebRTC on iOS and Android**  
 Date: 3 June 2015  
 Type: Talk  
