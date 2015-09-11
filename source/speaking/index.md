@@ -36,6 +36,12 @@ We gave a lot of talks, too. Some were recorded, some were not. Check them out b
 
 ##2015
 
+##[Tech Shock - The Realtime Web](http://www.meetup.com/TechShock/events/223009240/)
+Topic: **appear.in - Experiences with WebRTC**
+Date: 10 June 2015
+Type: Talk
+Speaker: [Bradley T. Hughes](https://twitter.com/_bradleythughes/)
+
 ##[Mobile Meetup Oslo](http://www.meetup.com/Mobile-Meetup-Oslo/events/222155906/)
 Topic: **WebRTC on iOS and Android**  
 Date: 3 June 2015  
