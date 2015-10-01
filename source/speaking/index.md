@@ -26,10 +26,10 @@ toc: true
 #Upcoming events
 Upcoming possibilities to meet the team. Poke us on [Twitter](https://twitter.com/appear_in) to set up a meet and greet should you be interested.
 
-##[JSConf EU](http://2015.jsconf.eu/)
-Date: 25-27 September 2015  
-Type: Attending  
-Attendees: [Dag-Inge Aas](https://twitter.com/daginge)
+##[Productized.co](http://www.productized.co/speakers/ane-sande/)
+Date: 8 October 2015  
+Type: Speaker  
+Attendees: [Ane Sande](https://twitter.com/ellasdatter)
 
 #Past talks
 We gave a lot of talks, too. Some were recorded, some were not. Check them out below!
