@@ -83,6 +83,8 @@ As you can see, creating a `RTCPeerConnection` is pretty similar to the web, if 
 [RTCPeerConnectionFactory deinitializeSSL];
 ```
 
+Note: The `RTCPeerConnectionFactory` object needs to be alive for the entire duration of your WebRTC session, so you should either make it a singleton or make sure it is retained by using a property (thanks to @tomfilk for pointing this out in the comments!). For simplicity I have not done this in the example above.
+
 #Gaining camera and microphone permission
 
 Unless we want a one-way audio/video session with a different client (like a browser or [Android application](http://tech.appear.in/2015/05/14/WebRTC-on-Android/), we need to have some media to send to the other peer. In this example we will send both the video and the audio, which we need to wrap in a `RTCMediaStream`. Unlike the web, where we have `getUserMedia`, we need to create the stream object ourself. While slightly different, this isn’t much harder than what you’re used to.
