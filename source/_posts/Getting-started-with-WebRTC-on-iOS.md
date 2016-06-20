@@ -161,7 +161,7 @@ Once the offer has been generated, we need to set our own local description with
 - (void)peerConnection:(RTCPeerConnection *)peerConnection
     didCreateSessionDescription:(RTCSessionDescription *)sdp error:(NSError *)error
 {
-	[peerConnection setLocalDescription:sdp]
+	[peerConnection setLocalDescription:sdp];
 }
 ```
 
@@ -177,11 +177,11 @@ Once the local description has been set, we can transmit our session description
 }
 ```
 
-At some point you should receive an answer back from the signaling server. Add that to the peer connection:
 ## Handling the incoming offer in the other client
+The other client should now receive the offer from the signaling server. Add that to the peer connection:
 
 ```objc
-RTCSessionDescription *remoteDesc = [[RTCSessionDescription alloc] initWithType:@"answer" sdp:sdp];
+RTCSessionDescription *remoteDesc = [[RTCSessionDescription alloc] initWithType:@"offer" sdp:sdp];
 [peerConnection setRemoteDescription:remoteDesc];
 ```
 
@@ -191,14 +191,37 @@ This will trigger the `didSetSessionDescriptionWithError` delegate method to fir
 - (void)peerConnection:(RTCPeerConnection *)peerConnection
     didSetSessionDescriptionWithError:(NSError *)error
 {
-  // If we have a local offer OR answer we should signal it
-  if (peerConnection.signalingState == RTCSignalingHaveLocalOffer | RTCSignalingHaveLocalAnswer ) {
+    // If we have a local offer we should signal it
+    if (peerConnection.signalingState == RTCSignalingHaveLocalOffer) {
+        // Send offer/answer through the signaling channel of our application
+    } else if (peerConnection.signalingState == RTCSignalingHaveRemoteOffer) {
+        // If we have a remote offer we should add it to the peer connection
+        [peerConnection createAnswerWithConstraints:constraints];
+    }
+}
+```
+
+Just like when creating an offer, the `didCreateSessionDescription` delegate method is fired,
+which in turn sets the local description, and then `didSetSessionDescriptionWithError` is invoked.
+Now we need to extend this method to also send the answer back to the other client:
+
+```objc
+// If we have a local offer OR answer we should signal it
+if (peerConnection.signalingState == RTCSignalingHaveLocalOffer | RTCSignalingHaveLocalAnswer ) {
     // Send offer/answer through the signaling channel of our application
-  } else if (peerConnection.signalingState == RTCSignalingHaveRemoteOffer) {
+} else if (peerConnection.signalingState == RTCSignalingHaveRemoteOffer) {
     // If we have a remote offer we should add it to the peer connection
     [peerConnection createAnswerWithConstraints:constraints];
-  }
 }
+```
+
+## Handling the incoming answer
+
+Similar to offers, an incoming answer has to be set as the remote description.
+
+```objc
+RTCSessionDescription *remoteDesc = [[RTCSessionDescription alloc] initWithType:@"answer" sdp:sdp];
+[peerConnection setRemoteDescription:remoteDesc];
 ```
 
 Great, now we are almost able to both initiate and receive a call!
@@ -215,7 +238,7 @@ As soon as you call `setLocalDescription`, the ICE engine will start firing off 
 }
 ```
 
-When receiving an ICE candidate on the wire, you simple pass it into the peer connection:
+When receiving an ICE candidate on the wire, you simply pass it into the peer connection:
 
 ```objc
 RTCICECandidate *candidate = [[RTCICECandidate alloc] initWithMid:SDP_MID
